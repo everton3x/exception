@@ -23,48 +23,72 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Exceptlion\FileSystem;
+namespace Exceptlion\Value;
 
 use Exception;
 use Throwable;
 
 /**
- * Usada quando um arquivo/diretório não existe no sistema de arquivos.
+ * Usada quando um valor está fora de uma lista de valores possíveis.
  *
  * @author Everton
  */
-class FileNotFoundException extends Exception
+class OutOfBoundsException extends Exception
 {
     
     /**
      *
-     * @var string Nome do arquivo/diretório não encontrado.
+     * @var array A lista de valores permitidos.
      */
-    protected string $filename = '';
+    protected array $acceptedValues = [];
     
     /**
      *
-     * @param string $filename Nome do arquivo/diretório não encontrado.
+     * @var mixed O valor encontrado.
+     */
+    protected $value = '';
+
+
+    /**
      *
+     * @param mixed $value O valor encontrado.
+     * @param array $acceptedValues A lista de valores possíveis.
      * @param string $message
      * @param int $code
      * @param Throwable $previous
      * @return Exception
+     * @throws Exceptlion\Type\InvalidTypeException
      */
-    public function __construct(string $filename, string $message = "", int $code = 0, Throwable $previous = null)
-    {
+    public function __construct(
+        $value,
+        array $acceptedValues,
+        string $message = "",
+        int $code = 0,
+        Throwable $previous = null
+    ) {
         parent::__construct($message, $code, $previous);
         
-        $this->filename = $filename;
+        $this->acceptedValues = $acceptedValues;
+        $this->value = $value;
     }
     
     /**
-     * Fornece o nome do arquivo não encontrado.
+     * Fornece a lista de valores permitidos.
      *
-     * @return string
+     * @return array
      */
-    public function getFilename(): string
+    public function getAcceptedValues(): array
     {
-        return $this->filename;
+        return $this->acceptedValues;
+    }
+    
+    /**
+     * Fornece o valor encontrado.
+     *
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->value;
     }
 }

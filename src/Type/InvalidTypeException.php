@@ -23,48 +23,71 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Exceptlion\FileSystem;
+namespace Exceptlion\Type;
 
 use Exception;
 use Throwable;
 
 /**
- * Usada quando um arquivo/diretório não existe no sistema de arquivos.
+ * Usada quando um tipo inválido é encontrado.
  *
  * @author Everton
  */
-class FileNotFoundException extends Exception
+class InvalidTypeException extends Exception
 {
     
     /**
      *
-     * @var string Nome do arquivo/diretório não encontrado.
+     * @var string O tipo encontrado.
      */
-    protected string $filename = '';
+    protected string $typeFound = '';
     
     /**
      *
-     * @param string $filename Nome do arquivo/diretório não encontrado.
+     * @var string O tipo esperado.
+     */
+    protected string $typeExpected = '';
+
+
+    /**
      *
+     * @param string $typeFound O tipo encontrado.
+     * @param string $typeExpected O tipo esperado.
      * @param string $message
      * @param int $code
      * @param Throwable $previous
      * @return Exception
      */
-    public function __construct(string $filename, string $message = "", int $code = 0, Throwable $previous = null)
-    {
+    public function __construct(
+        string $typeFound,
+        string $typeExpected,
+        string $message = "",
+        int $code = 0,
+        Throwable $previous = null
+    ) {
         parent::__construct($message, $code, $previous);
         
-        $this->filename = $filename;
+        $this->typeFound = $typeFound;
+        $this->typeExpected = $typeExpected;
     }
     
     /**
-     * Fornece o nome do arquivo não encontrado.
+     * Fornece o tipo encontrado.
      *
      * @return string
      */
-    public function getFilename(): string
+    public function getTypeFound(): string
     {
-        return $this->filename;
+        return $this->typeFound;
+    }
+    
+    /**
+     * Fornece o tipo esperado.
+     *
+     * @return string
+     */
+    public function getTypeExpected(): string
+    {
+        return $this->typeExpected;
     }
 }

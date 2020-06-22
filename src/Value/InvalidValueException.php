@@ -23,48 +23,71 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Exceptlion\FileSystem;
+namespace Exceptlion\Value;
 
 use Exception;
 use Throwable;
 
 /**
- * Usada quando um arquivo/diretório não existe no sistema de arquivos.
+ * Usada quando um valor inválido é encontrado.
  *
  * @author Everton
  */
-class FileNotFoundException extends Exception
+class InvalidValueException extends Exception
 {
     
     /**
      *
-     * @var string Nome do arquivo/diretório não encontrado.
+     * @var string O valor encontrado.
      */
-    protected string $filename = '';
+    protected string $valueFound = '';
     
     /**
      *
-     * @param string $filename Nome do arquivo/diretório não encontrado.
+     * @var string O valor esperado.
+     */
+    protected string $valueExpected = '';
+
+
+    /**
      *
+     * @param string $valueFound O valor encontrado.
+     * @param string $valueExpected O valor esperado.
      * @param string $message
      * @param int $code
      * @param Throwable $previous
      * @return Exception
      */
-    public function __construct(string $filename, string $message = "", int $code = 0, Throwable $previous = null)
-    {
+    public function __construct(
+        string $valueFound,
+        string $valueExpected,
+        string $message = "",
+        int $code = 0,
+        Throwable $previous = null
+    ) {
         parent::__construct($message, $code, $previous);
         
-        $this->filename = $filename;
+        $this->valueFound = $valueFound;
+        $this->valueExpected = $valueExpected;
     }
     
     /**
-     * Fornece o nome do arquivo não encontrado.
+     * Fornece o tipo encontrado.
      *
      * @return string
      */
-    public function getFilename(): string
+    public function getValueFound(): string
     {
-        return $this->filename;
+        return $this->valueFound;
+    }
+    
+    /**
+     * Fornece o tipo esperado.
+     *
+     * @return string
+     */
+    public function getValueExpected(): string
+    {
+        return $this->valueExpected;
     }
 }

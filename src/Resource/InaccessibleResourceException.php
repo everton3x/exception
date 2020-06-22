@@ -23,48 +23,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Exceptlion\FileSystem;
+namespace Exceptlion\Resource;
 
 use Exception;
 use Throwable;
 
 /**
- * Usada quando um arquivo/diretório não existe no sistema de arquivos.
+ * Usada quando um recurso está inacessível.
  *
  * @author Everton
  */
-class FileNotFoundException extends Exception
+class InaccessibleResourceException extends Exception
 {
     
     /**
      *
-     * @var string Nome do arquivo/diretório não encontrado.
+     * @var string Nome do recurso.
      */
-    protected string $filename = '';
+    protected string $resourceName = '';
     
     /**
      *
-     * @param string $filename Nome do arquivo/diretório não encontrado.
+     * @param string $resourceName Nome do recurso.
      *
      * @param string $message
      * @param int $code
      * @param Throwable $previous
      * @return Exception
      */
-    public function __construct(string $filename, string $message = "", int $code = 0, Throwable $previous = null)
+    public function __construct(string $resourceName, string $message = "", int $code = 0, Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
         
-        $this->filename = $filename;
+        $this->resourceName = $resourceName;
     }
     
     /**
-     * Fornece o nome do arquivo não encontrado.
+     * Fornece o nome do recurso.
      *
      * @return string
      */
-    public function getFilename(): string
+    public function getResourceName(): string
     {
-        return $this->filename;
+        return $this->resourceName;
     }
 }
