@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Exceptlion\FileSystem;
+namespace PTK\Exceptlion\FileSystem\Directory;
 
 use Exception;
 use Throwable;
@@ -40,22 +40,22 @@ class NotIsADirectoryException extends Exception
      *
      * @var string Caminho para o recurso que não é um diretório.
      */
-    protected string $pathResource = '';
+    protected string $path = '';
     
     /**
      *
-     * @param string $pathResource Caminho para o recurso que não é um diretório.
+     * @param string $path Caminho para o recurso que não é um diretório.
      *
      * @param string $message
      * @param int $code
      * @param Throwable $previous
      * @return Exception
      */
-    public function __construct(string $pathResource, string $message = "", int $code = 0, Throwable $previous = null)
+    public function __construct(string $path, string $message = "", int $code = 0, Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
         
-        $this->pathResource = $pathResource;
+        $this->path = $path;
     }
     
     /**
@@ -63,8 +63,8 @@ class NotIsADirectoryException extends Exception
      *
      * @return string
      */
-    public function getPathResource(): string
+    public function getPath(): string
     {
-        return $this->pathResource;
+        return $this->path;
     }
 }

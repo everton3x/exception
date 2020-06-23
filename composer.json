@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Exceptlion\\": "src"
+            "PTK\\Exceptlion\\": "src"
         }
     }
 }

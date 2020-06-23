@@ -23,48 +23,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Exceptlion\FileSystem;
+namespace PTK\Exceptlion\FileSystem;
 
 use Exception;
 use Throwable;
 
 /**
- * Usada quando um path não é um arquivo.
+ * Usada quando um arquivo/diretório não existe no sistema de arquivos.
  *
  * @author Everton
  */
-class NotIsAFileException extends Exception
+class PathNotFoundException extends Exception
 {
     
     /**
      *
-     * @var string Caminho para o recurso que não é um arquivo.
+     * @var string Nome do arquivo/diretório não encontrado.
      */
-    protected string $pathResource = '';
+    protected string $filename = '';
     
     /**
      *
-     * @param string $pathResource Caminho para o recurso que não é um arquivo.
+     * @param string $filename Nome do arquivo/diretório não encontrado.
      *
      * @param string $message
      * @param int $code
      * @param Throwable $previous
      * @return Exception
      */
-    public function __construct(string $pathResource, string $message = "", int $code = 0, Throwable $previous = null)
+    public function __construct(string $filename, string $message = "", int $code = 0, Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
         
-        $this->pathResource = $pathResource;
+        $this->filename = $filename;
     }
     
     /**
-     * Fornece o caminho do recurso que não é um arquivo.
+     * Fornece o nome do arquivo não encontrado.
      *
      * @return string
      */
-    public function getPathResource(): string
+    public function getFilename(): string
     {
-        return $this->pathResource;
+        return $this->filename;
     }
 }

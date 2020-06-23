@@ -23,48 +23,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace PTK\Exceptlion\Resource;
+namespace PTK\Exceptlion\FileSystem;
 
 use Exception;
 use Throwable;
 
 /**
- * Usada quando um recurso não puder ser encontrado.
+ * Usada quando ocorre uma falha ao abrir um arquivo/diretório.
  *
  * @author Everton
  */
-class NotFoundResourceException extends Exception
+class OpenException extends Exception
 {
     
     /**
      *
-     * @var string Nome do recurso.
+     * @var string Caminho para o recurso.
      */
-    protected string $resourceName = '';
+    protected string $path = '';
     
     /**
      *
-     * @param string $resourceName Nome do recurso.
+     * @param string $path Caminho para o recurso.
      *
      * @param string $message
      * @param int $code
      * @param Throwable $previous
      * @return Exception
      */
-    public function __construct(string $resourceName, string $message = "", int $code = 0, Throwable $previous = null)
+    public function __construct(string $path, string $message = "", int $code = 0, Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
         
-        $this->resourceName = $resourceName;
+        $this->path = $path;
     }
     
     /**
-     * Fornece o nome do recurso.
+     * Fornece o caminho do recurso.
      *
      * @return string
      */
-    public function getResourceName(): string
+    public function getPath(): string
     {
-        return $this->resourceName;
+        return $this->path;
     }
 }
