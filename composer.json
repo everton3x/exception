@@ -1,5 +1,5 @@
 {
-    "name": "everton3x/exception",
+    "name": "php-tool-kit/exceptlion",
     "description": "A library for exceptions.",
     "type": "library",
     "license": "MIT",
