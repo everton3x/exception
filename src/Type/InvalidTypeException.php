@@ -44,15 +44,15 @@ class InvalidTypeException extends Exception
     
     /**
      *
-     * @var string O tipo esperado.
+     * @var array O tipo esperado.
      */
-    protected string $typeExpected = '';
+    protected array $typeExpected = [];
 
 
     /**
      *
      * @param string $typeFound O tipo encontrado.
-     * @param string $typeExpected O tipo esperado.
+     * @param array $typeExpected A lista de tipos esperados.
      * @param string $message
      * @param int $code
      * @param Throwable $previous
@@ -60,7 +60,7 @@ class InvalidTypeException extends Exception
      */
     public function __construct(
         string $typeFound,
-        string $typeExpected,
+        array $typeExpected,
         string $message = "",
         int $code = 0,
         Throwable $previous = null
@@ -82,11 +82,11 @@ class InvalidTypeException extends Exception
     }
     
     /**
-     * Fornece o tipo esperado.
+     * Fornece a lista dos tipos esperados.
      *
-     * @return string
+     * @return array
      */
-    public function getTypeExpected(): string
+    public function getTypeExpected(): array
     {
         return $this->typeExpected;
     }
